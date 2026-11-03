@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>〔报告标题〕</title>
+<style>
+:root{--navy:#002960;--b3:#00478E;--b4:#0056A5;--cyan:#00A9F4;--slate:#6B7A89;
+--mute:#AFC1D6;--bg:#F5F6F7;--line:#DDE1E6;--pale:#E6EFF8;--ink:#1F2E3A;--dark:#15324F}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",system-ui,sans-serif;font-size:15px;line-height:1.9;
+-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+h1,h3{margin:0;font-weight:600;letter-spacing:.01em}
+[hidden]{display:none!important}
+.mast{background:var(--navy);color:#fff;padding:30px 24px 28px}
+.mast-in{max-width:900px;margin:0 auto}
+.mast h1{font-size:30px;line-height:1.35;letter-spacing:.02em;margin:0}
+.abs{max-width:900px;margin:28px auto 0;padding:0 24px}
+.abs-in{border-left:3px solid var(--navy);background:var(--bg);padding:22px 26px}
+.absk{display:block;font-size:10px;letter-spacing:.2em;color:var(--b4);margin-bottom:12px}
+.abs-in p{margin:0 0 15px;font-size:14.6px;line-height:1.98;text-align:justify;color:var(--dark)}
+.abs-in p:last-child{margin-bottom:0}
+.outline{list-style:none;max-width:900px;margin:0 auto;padding:34px 24px 44px}
+.br{position:relative;margin:0 0 20px}
+.br:last-child{margin-bottom:0}
+.bh{position:relative;display:flex;align-items:baseline;gap:11px;padding:0 0 11px 22px}
+.bh::before{content:"";position:absolute;left:1px;top:6px;width:8px;height:8px;border:2px solid var(--b4);
+border-radius:50%;background:#fff}
+.bh .bno{font-size:10.5px;letter-spacing:.16em;color:var(--b4)}
+.bh h3{font-size:13.5px;color:var(--navy);letter-spacing:.09em}
+.lv2{list-style:none;margin:0;padding-left:26px;border-left:1px solid var(--mute);margin-left:8px}
+.lv2>li{position:relative}
+.lv2>li::before{content:"";position:absolute;left:-26px;top:31px;width:26px;height:1px;background:var(--line)}
+.card{background:#fff;position:relative}
+.lv2 .node{border-bottom:1px solid var(--line)}
+.lv2 .node:last-child{border-bottom:0}
+.node-head{display:grid;grid-template-columns:24px minmax(0,1fr) 14px;gap:16px;align-items:start;
+padding:15px 0 15px 10px;width:100%;text-align:left;background:none;border:0;cursor:pointer;color:inherit}
+.node-head:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+.node-head .num{font-size:11px;letter-spacing:.1em;color:var(--b4);padding-top:3px}
+.node-head h3{font-size:16.5px;line-height:1.55;color:var(--dark);margin:0 0 8px}
+.node.open .node-head h3{font-size:17.5px;color:var(--navy);margin:0}
+.evs{display:grid;gap:5px}
+.evs .ev{position:relative;padding-left:14px;font-size:12.6px;line-height:1.72;color:#41525F}
+.evs .ev::before{content:"";position:absolute;left:1px;top:8px;width:4px;height:4px;background:var(--mute)}
+.evs .more{letter-spacing:0;padding-left:1px;color:var(--mute)}
+.go{font-size:15px;color:var(--mute);text-align:right;padding-top:1px}
+.go::before{content:"＋"}
+.node.open .go{color:var(--navy)}
+.node.open .go::before{content:"－"}
+.node.open .node-head{padding-bottom:6px}
+.node.open .evs{display:none}
+.node-body{padding:2px 0 30px 40px}
+.prose p{margin:0 0 15px;font-size:15.2px;line-height:1.98;text-align:justify;color:var(--ink)}
+.prose p:last-child{margin-bottom:0}
+.fig{margin:26px 0;border-top:2px solid var(--navy);padding-top:10px;max-width:740px}
+.fig-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.fig-no{font-size:11px;letter-spacing:.14em;color:var(--b4);font-weight:600}
+.fig-title{font-size:13.5px;font-weight:600;color:var(--navy);flex:1;line-height:1.5}
+.fig-tools .tbtn{border:1px solid var(--line);background:#fff;color:var(--slate);font-size:11px;
+padding:2px 8px;cursor:pointer}
+.fig-tools .tbtn[aria-pressed="true"]{background:var(--pale);border-color:var(--mute);color:var(--navy)}
+.fig-canvas svg{display:block;width:100%;height:auto}
+.fig-table{margin:10px 0 4px;overflow-x:auto}
+.fig-table table{border-collapse:collapse;width:100%;font-size:12.5px}
+.fig-table th,.fig-table td{border-bottom:1px solid var(--line);padding:6px 10px;text-align:right}
+.fig-table th:first-child,.fig-table td:first-child{text-align:left}
+.fig-table th{color:var(--slate);font-weight:600;background:var(--bg)}
+figcaption{font-size:10.5px;color:var(--slate);line-height:1.7;margin-top:8px}
+footer{border-top:1px solid var(--line);margin-top:50px;padding:26px 24px 60px;font-size:11.5px;
+color:var(--slate)}
+.foot-in{max-width:900px;margin:0 auto;line-height:1.9}
+.foot-in b{color:var(--b3);font-weight:600}
+@media(max-width:720px){
+  .mast p,.mast h1{font-size:22px}
+  .lv2{padding-left:16px;margin-left:4px}
+  .lv2>li::before{left:-16px;width:16px}
+  .node-head{grid-template-columns:20px minmax(0,1fr) 14px;gap:10px}
+  .node-body{padding-left:30px}
+  .abs-in{padding:18px 18px}
+  .prose p{font-size:15px}
+}
+</style>
+</head>
+<body>
+<!--
+  狗不扯蛋专题研究 · 网页模板
+  ------------------------------------------------------------------
+  用法：把本文件另存为 [报告标题].html，只改 <body> 里的内容。
+  1. <style> 与 <script> 原样保留，不要增删规则，配色与交互都写在这里面。
+  2. 结构只有三种节点：区块 <li class="br">、章卡 <article class="card node">、图表 <figure class="fig">。
+     区块按需复制，章卡按需复制，图表按需复制。
+  3. 〔方括号〕是占位符，全部替换成报告内容后删掉方括号本身，不要留空占位。
+  4. 摘要逐段照录原文，不改写；正文一个自然段一行；章卡收起态的三条论据要带数字或者明确事实。
+  5. 章卡默认收起：<button ... aria-expanded="false"> 与 <div class="card-body" ... hidden> 两处都不要改成展开。
+  6. 每个 id（ch01 / body-01 / ch02 / body-02）必须唯一，复制章卡时一并改成新章号。
+-->
+<header class="mast"><div class="mast-in"><h1>〔报告标题〕</h1></div></header>
+
+<section class="abs"><div class="abs-in"><span class="absk">摘要</span><p>〔摘要第一段〕</p><p>〔摘要第二段〕</p><p>〔摘要第三段〕</p></div></section>
+
+<ol class="outline">
+
+<!-- ============================== 区块：一条主枝 ============================== -->
+<li class="br">
+  <div class="bh"><span class="bno">Ⅰ</span><h3>〔区块标题〕</h3></div>
+  <ol class="lv2">
+
+    <!-- ---------- 章卡：展开态里带一张图 ---------- -->
+    <li>
+      <article class="card node" id="ch01" data-ch="01">
+        <button type="button" class="card-head node-head" data-head="" aria-expanded="false" aria-controls="body-01">
+          <span class="num">01</span>
+          <span class="lead"><h3>〔章标题〕</h3>
+            <span class="evs">
+              <span class="ev">〔论据一〕</span>
+              <span class="ev">〔论据二〕</span>
+              <span class="ev">〔论据三〕<span class="more">…</span></span>
+            </span>
+          </span>
+          <span class="go" aria-hidden="true"></span>
+        </button>
+        <div class="card-body node-body" id="body-01" hidden="">
+          <div class="prose">
+
+<!-- ---------- 图表：这里是一张样例图，照它的结构画你自己的图 ---------- -->
+<figure class="fig"><div class="fig-head"><span class="fig-no">图1</span><span class="fig-title">TMT与电子通信的降幅拆解：被动主导、主动有限</span><span class="fig-tools"><button type="button" class="tbtn" data-act="table" aria-pressed="false">数据</button></span></div><div class="fig-canvas"><svg viewBox="0 0 880 420" width="880" height="420" role="img" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"><line x1="58.0" y1="450.1" x2="858.0" y2="450.1" stroke="#DDE1E6" stroke-width="1"></line><text x="48.0" y="454.1" font-size="11" fill="#6B7A89" text-anchor="end" font-weight="400">-12</text><line x1="58.0" y1="315.4" x2="858.0" y2="315.4" stroke="#DDE1E6" stroke-width="1"></line><text x="48.0" y="319.4" font-size="11" fill="#6B7A89" text-anchor="end" font-weight="400">-8</text><line x1="58.0" y1="180.7" x2="858.0" y2="180.7" stroke="#DDE1E6" stroke-width="1"></line><text x="48.0" y="184.7" font-size="11" fill="#6B7A89" text-anchor="end" font-weight="400">-4</text><line x1="58.0" y1="46.0" x2="858.0" y2="46.0" stroke="#DDE1E6" stroke-width="1"></line><text x="48.0" y="50.0" font-size="11" fill="#6B7A89" text-anchor="end" font-weight="400">0</text><text x="48.0" y="32.0" font-size="10" fill="#6B7A89" text-anchor="end" font-weight="400">百分点</text><rect x="58.0" y="14.0" width="10.0" height="10.0" fill="#002960" rx="1"></rect><text x="73.0" y="22.0" font-size="10" fill="#6B7A89" text-anchor="start" font-weight="400">配置比例变动</text><rect x="147.0" y="14.0" width="10.0" height="10.0" fill="#0056A5" rx="1"></rect><text x="162.0" y="22.0" font-size="10" fill="#6B7A89" text-anchor="start" font-weight="400">其中被动（股价）</text><rect x="257.0" y="14.0" width="10.0" height="10.0" fill="#0056A5" rx="1"></rect><text x="272.0" y="22.0" font-size="10" fill="#6B7A89" text-anchor="start" font-weight="400">其中主动调仓</text><rect x="205.0" y="46.0" width="30.0" height="293.0" fill="#002960" rx="0"></rect><text x="220.0" y="352.0" font-size="10" fill="#002960" text-anchor="middle" font-weight="600">-8.70</text><rect x="243.0" y="46.0" width="30.0" height="266.0" fill="#0056A5" rx="0"></rect><text x="258.0" y="325.0" font-size="10" fill="#0056A5" text-anchor="middle" font-weight="600">-7.90</text><rect x="281.0" y="46.0" width="30.0" height="30.3" fill="#0056A5" rx="0"></rect><text x="296.0" y="89.3" font-size="10" fill="#0056A5" text-anchor="middle" font-weight="600">-0.90</text><text x="258.0" y="398.0" font-size="11" fill="#15324F" text-anchor="middle" font-weight="400">TMT合计</text><rect x="605.0" y="46.0" width="30.0" height="330.0" fill="#002960" rx="0"></rect><text x="620.0" y="368.0" font-size="10" fill="#FFFFFF" text-anchor="middle" font-weight="600">-9.80</text><rect x="643.0" y="46.0" width="30.0" height="279.5" fill="#0056A5" rx="0"></rect><text x="658.0" y="338.5" font-size="10" fill="#0056A5" text-anchor="middle" font-weight="600">-8.30</text><rect x="681.0" y="46.0" width="30.0" height="50.5" fill="#0056A5" rx="0"></rect><text x="696.0" y="109.5" font-size="10" fill="#0056A5" text-anchor="middle" font-weight="600">-1.50</text><text x="658.0" y="398.0" font-size="11" fill="#15324F" text-anchor="middle" font-weight="400">电子+通信</text><line x1="58.0" y1="46.0" x2="858.0" y2="46.0" stroke="#15324F" stroke-width="1.2"></line></svg></div><div class="fig-table" hidden=""><table><thead><tr><th>类别</th><th>配置比例变动</th><th>其中被动（股价）</th><th>其中主动调仓</th></tr></thead><tbody><tr><td>TMT合计</td><td>-8.7</td><td>-7.9</td><td>-0.9</td></tr><tr><td>电子+通信</td><td>-9.8</td><td>-8.3</td><td>-1.5</td></tr></tbody></table></div><figcaption>资料来源：申万宏源证券，2026年10月28日。单位：百分点</figcaption></figure>
+
+            <p>〔正文第一段〕</p>
+            <p>〔正文第二段〕</p>
+          </div>
+        </div>
+      </article>
+    </li>
+
+    <!-- ---------- 章卡照抄上面整段 <li>，改 id、章号、问句、论据与正文 ---------- -->
+    <li>
+      <article class="card node" id="ch02" data-ch="02">
+        <button type="button" class="card-head node-head" data-head="" aria-expanded="false" aria-controls="body-02">
+          <span class="num">02</span>
+          <span class="lead"><h3>〔章标题〕</h3>
+            <span class="evs">
+              <span class="ev">〔论据一〕</span>
+              <span class="ev">〔论据二〕</span>
+              <span class="ev">〔论据三〕</span>
+            </span>
+          </span>
+          <span class="go" aria-hidden="true"></span>
+        </button>
+        <div class="card-body node-body" id="body-02" hidden="">
+          <div class="prose"><p>〔正文段落〕</p></div>
+        </div>
+      </article>
+    </li>
+
+  </ol>
+</li>
+
+<!-- ============================== 第二个区块 ==============================
+     照抄上面整段 <li class="br">，换罗马数字（Ⅱ、Ⅲ、Ⅳ）与区块标题，
+     章号接着往下排。区块三到四个为宜。
+-->
+
+</ol>
+
+<footer><div class="foot-in"><b>免责声明</b>　本页数据与内容均由 AI 平台生成，可能存在偏差或错漏，仅供研究参考；读者须自行辨认信息真伪并独立判断，本页不构成任何投资建议。</div></footer>
+
+<script>
+(function(){
+  var heads=[].slice.call(document.querySelectorAll('[data-head]'));
+  function toggle(card,open){
+    var body=card.querySelector('.card-body'), head=card.querySelector('[data-head]');
+    if(!body||!head)return;
+    if(open){card.classList.add('open');body.hidden=false;head.setAttribute('aria-expanded','true');}
+    else{card.classList.remove('open');body.hidden=true;head.setAttribute('aria-expanded','false');}
+  }
+  heads.forEach(function(h){
+    h.addEventListener('click',function(){
+      var card=h.closest('.card');
+      toggle(card,!card.classList.contains('open'));
+    });
+  });
+  [].forEach.call(document.querySelectorAll('.fig'),function(fig){
+    var table=fig.querySelector('table'), btn=fig.querySelector('[data-act="table"]');
+    if(btn&&table){btn.addEventListener('click',function(){
+      var hidden=!table.parentNode.hidden; table.parentNode.hidden=hidden;
+      btn.setAttribute('aria-pressed',hidden?'false':'true');
+    });}
+    if(btn)btn.setAttribute('aria-label','显示或隐藏该图的数据表');
+  });
+})();
+</script>
+
+
+</body></html>
